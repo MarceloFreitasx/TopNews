@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TopNews</string>
+
+    <string name="loading">Carregando...</string>
+    <string name="error">Erro ao carregar dados</string>
+    <string name="home">Home</string>
+    <string name="arts">Arts</string>
+    <string name="science">Science</string>
+    <string name="technology">Tech</string>
+    <string name="health">Health</string>
+</resources>
