@@ -1,6 +1,6 @@
 package br.com.topnews.data.response.health
 
-import br.com.topnews.data.models.NewsModel
+import br.com.topnews.data.models.HealthModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -12,7 +12,7 @@ data class HealthResultsResponse(
     @Json(name = "multimedia")
     val multimedia: List<HealthMultimediaResponse>
 ) {
-    fun fromJson() = NewsModel(
+    fun fromJson() = HealthModel(
         title = this.title,
         byline = this.byline,
         cover = this.multimedia[0].url,

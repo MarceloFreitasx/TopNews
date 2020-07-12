@@ -8,4 +8,6 @@
     <string name="science">Science</string>
     <string name="technology">Tech</string>
     <string name="health">Health</string>
+    <string name="desmarcar_lidos">Desmarcar Lidos</string>
+    <string name="atualizar">Atualizar Notícias</string>
 </resources>

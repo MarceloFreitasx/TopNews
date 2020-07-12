@@ -1,6 +1,6 @@
 package br.com.topnews.data.response.science
 
-import br.com.topnews.data.models.NewsModel
+import br.com.topnews.data.models.ScienceModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -12,7 +12,7 @@ data class ScienceResultsResponse(
     @Json(name = "multimedia")
     val multimedia: List<ScienceMultimediaResponse>
 ) {
-    fun fromJson() = NewsModel(
+    fun fromJson() = ScienceModel(
         title = this.title,
         byline = this.byline,
         cover = this.multimedia[0].url,

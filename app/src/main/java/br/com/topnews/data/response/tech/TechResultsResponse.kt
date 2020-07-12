@@ -1,6 +1,6 @@
 package br.com.topnews.data.response.tech
 
-import br.com.topnews.data.models.NewsModel
+import br.com.topnews.data.models.TechModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -12,7 +12,7 @@ data class TechResultsResponse(
     @Json(name = "multimedia")
     val multimedia: List<TechMultimediaResponse>
 ) {
-    fun fromJson() = NewsModel(
+    fun fromJson() = TechModel(
         title = this.title,
         byline = this.byline,
         cover = this.multimedia[0].url,

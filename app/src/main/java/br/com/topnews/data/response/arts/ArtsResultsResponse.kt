@@ -1,6 +1,6 @@
 package br.com.topnews.data.response.arts
 
-import br.com.topnews.data.models.NewsModel
+import br.com.topnews.data.models.ArtsModel
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -12,7 +12,7 @@ data class ArtsResultsResponse(
     @Json(name = "multimedia")
     val multimedia: List<ArtsMultimediaResponse>
 ) {
-    fun fromJson() = NewsModel(
+    fun fromJson() = ArtsModel(
         title = this.title,
         byline = this.byline,
         cover = this.multimedia[0].url,

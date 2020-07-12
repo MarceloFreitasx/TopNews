@@ -32,7 +32,7 @@ interface ApiInterface {
     ): Call<HealthBodyResponse>
 
     @GET("technology.json")
-    fun getTechnologyNews(
+    fun getTechNews(
         @Query("api-key") apiKey: String = APIKEY
     ): Call<TechBodyResponse>
 
