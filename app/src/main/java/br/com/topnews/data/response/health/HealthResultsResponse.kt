@@ -9,6 +9,7 @@ data class HealthResultsResponse(
     val title: String,
     val url: String,
     val byline: String,
+    val uri: String,
     @Json(name = "multimedia")
     val multimedia: List<HealthMultimediaResponse>
 ) {
@@ -16,6 +17,7 @@ data class HealthResultsResponse(
         title = this.title,
         byline = this.byline,
         cover = this.multimedia[0].url,
-        url = this.url
+        url = this.url,
+        uri = this.uri
     )
 }

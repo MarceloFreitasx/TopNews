@@ -1,9 +1,13 @@
 package br.com.topnews.data.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class TechModel(
+    @PrimaryKey val uri: String,
     val title: String,
     val byline: String,
     val cover: String,
-    val url: String,
-    val lido: Boolean = false
+    val url: String
 )

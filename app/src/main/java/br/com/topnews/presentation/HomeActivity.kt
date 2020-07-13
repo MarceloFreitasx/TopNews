@@ -15,13 +15,14 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
+
+    val viewModel = HomeViewModel(supportFragmentManager)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
-
-        val viewModel = HomeViewModel(supportFragmentManager)
 
         viewModel.viewFlipperNews.observe(this, Observer {
             it?.let { viewFlipper ->
@@ -38,17 +39,20 @@ class HomeActivity : AppCompatActivity() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                when (tab?.position) {
-                    // Home Tab
-                    0 -> viewModel.replaceFragment(NewsFragment(viewModel))
-                    // Arts Tab
-                    1 -> viewModel.replaceFragment(ArtsFragment(viewModel))
-                    // Science Tab
-                    2 -> viewModel.replaceFragment(ScienceFragment(viewModel))
-                    // Health Tab
-                    3 -> viewModel.replaceFragment(HealthFragment(viewModel))
-                    //Tech Tab
-                    4 -> viewModel.replaceFragment(TechFragment(viewModel))
+                if (tab != null) {
+                    viewModel.selectedTab = tab.position
+                    when (tab.position) {
+                        // Home Tab
+                        0 -> viewModel.replaceFragment(NewsFragment(viewModel))
+                        // Arts Tab
+                        1 -> viewModel.replaceFragment(ArtsFragment(viewModel))
+                        // Science Tab
+                        2 -> viewModel.replaceFragment(ScienceFragment(viewModel))
+                        // Health Tab
+                        3 -> viewModel.replaceFragment(HealthFragment(viewModel))
+                        //Tech Tab
+                        4 -> viewModel.replaceFragment(TechFragment(viewModel))
+                    }
                 }
             }
 
@@ -66,6 +70,18 @@ class HomeActivity : AppCompatActivity() {
         }
 
         R.id.action_desmarcar -> {
+            when (viewModel.selectedTab) {
+                // Home Tab
+                0 -> viewModel.replaceFragment(NewsFragment(viewModel))
+                // Arts Tab
+                1 -> viewModel.replaceFragment(ArtsFragment(viewModel))
+                // Science Tab
+                2 -> viewModel.replaceFragment(ScienceFragment(viewModel))
+                // Health Tab
+                3 -> viewModel.replaceFragment(HealthFragment(viewModel))
+                //Tech Tab
+                4 -> viewModel.replaceFragment(TechFragment(viewModel))
+            }
             true
         }
 

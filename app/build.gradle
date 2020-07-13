@@ -34,6 +34,7 @@ android {
 
 ext {
     retrofitVersion = "2.9.0"
+    roomVersion = "2.2.5"
 }
 
 dependencies {
@@ -46,15 +47,23 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
 
+    // Lifecycle
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
+    // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    // Retrofit/Moshi
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     implementation("com.squareup.moshi:moshi-kotlin:1.9.2")
     kapt("com.squareup.moshi:moshi-kotlin-codegen:1.9.3")
 
+    // Room components
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt("androidx.room:room-compiler:$roomVersion")
+
+    // jUnit / Mockito
     testImplementation 'junit:junit:4.12'
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
     testImplementation 'androidx.arch.core:core-testing:2.1.0'

@@ -35,6 +35,8 @@ class NewsFragment(private val homeViewModel: HomeViewModel) : Fragment() {
                         layoutManager =
                             GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                         adapter = NewsAdapter(news) {
+                            viewModel.homeRepository.insertNews(it)
+                            viewModel.checkNews()
                             val openURL = Intent(Intent.ACTION_VIEW)
                             openURL.data = Uri.parse(it.url)
                             startActivity(openURL)

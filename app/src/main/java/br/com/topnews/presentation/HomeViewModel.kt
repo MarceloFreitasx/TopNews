@@ -10,6 +10,7 @@ class HomeViewModel(supportFragmentManager: FragmentManager) : ViewModel() {
 
     val fr = supportFragmentManager
     val viewFlipperNews: MutableLiveData<Int> = MutableLiveData()
+    var selectedTab: Int = 0
 
     val VIEWFLIPPER_LOADING = 0
     val VIEWFLIPPER_NEWS = 1
@@ -20,4 +21,6 @@ class HomeViewModel(supportFragmentManager: FragmentManager) : ViewModel() {
         transaction.replace(R.id.fragmentView, fragment)
         transaction.commit()
     }
+
+
 }
