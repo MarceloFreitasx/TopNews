@@ -3,6 +3,7 @@ package br.com.topnews.presentation.tech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.topnews.R
 import br.com.topnews.data.models.TechModel
@@ -23,18 +24,20 @@ class TechAdapter(
     override fun getItemCount() = news.count()
 
     override fun onBindViewHolder(holder: TechViewHolder, position: Int) {
-        holder.bindView(news[position])
+        holder.bindView(position + 1, news[position])
     }
 
     class TechViewHolder(
         itemView: View,
         private val onItemClickListener: ((news: TechModel) -> Unit)
     ) : RecyclerView.ViewHolder(itemView) {
+        private val position: TextView = itemView.position
         private val imagem = itemView.imagem
         private val titulo = itemView.titulo
         private val autor = itemView.autor
 
-        fun bindView(news: TechModel) {
+        fun bindView(i: Int, news: TechModel) {
+            position.text = i.toString()
             Picasso.get().load(news.cover).into(imagem);
             titulo.text = news.title
             autor.text = news.byline

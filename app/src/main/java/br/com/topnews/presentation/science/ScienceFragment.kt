@@ -27,6 +27,7 @@ class ScienceFragment(private val homeViewModel: HomeViewModel) : Fragment() {
         val viewModel: ScienceViewModel =
             ScienceViewModel.ViewModelFactory(homeViewModel, ScienceApiDataSource())
                 .create(ScienceViewModel::class.java)
+        homeViewModel.viewModelFrag = viewModel
 
         activity?.let {
             viewModel.scienceLiveData.observe(it, Observer {
@@ -35,6 +36,7 @@ class ScienceFragment(private val homeViewModel: HomeViewModel) : Fragment() {
                         layoutManager =
                             GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                         adapter = ScienceAdapter(news) {
+                            viewModel.insertNews(it)
                             val openURL = Intent(Intent.ACTION_VIEW)
                             openURL.data = Uri.parse(it.url)
                             startActivity(openURL)

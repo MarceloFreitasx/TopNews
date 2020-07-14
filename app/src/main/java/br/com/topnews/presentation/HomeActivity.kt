@@ -66,22 +66,12 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_atualizar -> {
+            viewModel.atualizarNews()
             true
         }
 
         R.id.action_desmarcar -> {
-            when (viewModel.selectedTab) {
-                // Home Tab
-                0 -> viewModel.replaceFragment(NewsFragment(viewModel))
-                // Arts Tab
-                1 -> viewModel.replaceFragment(ArtsFragment(viewModel))
-                // Science Tab
-                2 -> viewModel.replaceFragment(ScienceFragment(viewModel))
-                // Health Tab
-                3 -> viewModel.replaceFragment(HealthFragment(viewModel))
-                //Tech Tab
-                4 -> viewModel.replaceFragment(TechFragment(viewModel))
-            }
+            viewModel.desmarcarNews()
             true
         }
 

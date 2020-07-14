@@ -13,6 +13,7 @@ class ScienceViewModel(
     private val dataSource: ScienceRepository
 ) : ViewModel() {
 
+    private var newsList: MutableList<ScienceModel> = mutableListOf()
     val scienceLiveData: MutableLiveData<List<ScienceModel>> = MutableLiveData()
 
     fun getScience() {
@@ -20,7 +21,8 @@ class ScienceViewModel(
         dataSource.getScience { result: ScienceResult ->
             when (result) {
                 is ScienceResult.Success -> {
-                    scienceLiveData.value = result.news
+                    newsList = result.news.toMutableList()
+                    checkNews()
                     homeViewModel.viewFlipperNews.value = homeViewModel.VIEWFLIPPER_NEWS
                 }
                 is ScienceResult.Error -> {
@@ -28,6 +30,30 @@ class ScienceViewModel(
                 }
             }
         }
+    }
+
+    fun insertNews(it: ScienceModel) {
+        homeViewModel.scienceDBRepository.insertNews(it)
+        checkNews()
+    }
+
+    fun removeNews() {
+        val max = 20 + homeViewModel.scienceDBRepository.getAllNews()!!.size
+        homeViewModel.scienceDBRepository.removeAllNews()
+        checkNews(max)
+    }
+
+    private fun checkNews(max: Int = 20) {
+        val list: MutableList<ScienceModel> = mutableListOf()
+        var i = 0
+        for (value in newsList) {
+            if (i >= max) break
+            if (!homeViewModel.scienceDBRepository.findNews(value)!!) {
+                list.add(value)
+                i++
+            }
+        }
+        scienceLiveData.value = list
     }
 
     class ViewModelFactory(

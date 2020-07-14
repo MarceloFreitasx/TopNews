@@ -4,7 +4,7 @@ import android.os.AsyncTask
 import br.com.topnews.TopNews
 import br.com.topnews.data.models.NewsModel
 
-class HomeRepository {
+class HomeDBRepository {
     fun getAllNews(): List<NewsModel>? {
         return get().execute().get()
     }

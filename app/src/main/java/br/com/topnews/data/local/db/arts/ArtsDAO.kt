@@ -8,7 +8,7 @@ import br.com.topnews.data.models.ArtsModel
 @Dao
 interface ArtsDAO {
     @Query("SELECT * FROM ArtsModel")
-    fun getAllArtsNews(): List<ArtsModel>
+    fun getAllNews(): List<ArtsModel>
 
     @Query("SELECT * FROM ArtsModel WHERE uri = :uri")
     fun getNewsById(uri: String): ArtsModel

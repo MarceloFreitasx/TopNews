@@ -27,6 +27,7 @@ class TechFragment(private val homeViewModel: HomeViewModel) : Fragment() {
         val viewModel: TechViewModel =
             TechViewModel.ViewModelFactory(homeViewModel, TechApiDataSource())
                 .create(TechViewModel::class.java)
+        homeViewModel.viewModelFrag = viewModel
 
         activity?.let {
             viewModel.techLiveData.observe(it, Observer {
@@ -35,6 +36,7 @@ class TechFragment(private val homeViewModel: HomeViewModel) : Fragment() {
                         layoutManager =
                             GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                         adapter = TechAdapter(news) {
+                            viewModel.insertNews(it)
                             val openURL = Intent(Intent.ACTION_VIEW)
                             openURL.data = Uri.parse(it.url)
                             startActivity(openURL)

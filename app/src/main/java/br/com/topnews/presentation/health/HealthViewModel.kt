@@ -13,6 +13,7 @@ class HealthViewModel(
     private val dataSource: HealthRepository
 ) : ViewModel() {
 
+    private var newsList: MutableList<HealthModel> = mutableListOf()
     val healthLiveData: MutableLiveData<List<HealthModel>> = MutableLiveData()
 
     fun getNews() {
@@ -20,7 +21,8 @@ class HealthViewModel(
         dataSource.getHealth { result: HealthResult ->
             when (result) {
                 is HealthResult.Success -> {
-                    healthLiveData.value = result.news
+                    newsList = result.news.toMutableList()
+                    checkNews()
                     homeViewModel.viewFlipperNews.value = homeViewModel.VIEWFLIPPER_NEWS
                 }
                 is HealthResult.Error -> {
@@ -28,6 +30,30 @@ class HealthViewModel(
                 }
             }
         }
+    }
+
+    fun insertNews(it: HealthModel) {
+        homeViewModel.healthDBRepository.insertNews(it)
+        checkNews()
+    }
+
+    fun removeNews() {
+        val max = 20 + homeViewModel.healthDBRepository.getAllNews()!!.size
+        homeViewModel.healthDBRepository.removeAllNews()
+        checkNews(max)
+    }
+
+    private fun checkNews(max: Int = 20) {
+        val list: MutableList<HealthModel> = mutableListOf()
+        var i = 0
+        for (value in newsList) {
+            if (i >= max) break
+            if (!homeViewModel.healthDBRepository.findNews(value)!!) {
+                list.add(value)
+                i++
+            }
+        }
+        healthLiveData.value = list
     }
 
     class ViewModelFactory(

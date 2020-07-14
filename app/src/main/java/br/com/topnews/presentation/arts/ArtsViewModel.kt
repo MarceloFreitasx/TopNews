@@ -13,6 +13,7 @@ class ArtsViewModel(
     private val dataSource: ArtsRepository
 ) : ViewModel() {
 
+    private var newsList: MutableList<ArtsModel> = mutableListOf()
     val artsLiveData: MutableLiveData<List<ArtsModel>> = MutableLiveData()
 
     fun getArts() {
@@ -20,7 +21,8 @@ class ArtsViewModel(
         dataSource.getArts { result: ArtsResult ->
             when (result) {
                 is ArtsResult.Success -> {
-                    artsLiveData.value = result.news
+                    newsList = result.news.toMutableList()
+                    checkNews()
                     homeViewModel.viewFlipperNews.value = homeViewModel.VIEWFLIPPER_NEWS
                 }
                 is ArtsResult.Error -> {
@@ -28,6 +30,30 @@ class ArtsViewModel(
                 }
             }
         }
+    }
+
+    fun insertNews(it: ArtsModel) {
+        homeViewModel.artsDBRepository.insertNews(it)
+        checkNews()
+    }
+
+    fun removeNews() {
+        val max = 20 + homeViewModel.artsDBRepository.getAllNews()!!.size
+        homeViewModel.artsDBRepository.removeAllNews()
+        checkNews(max)
+    }
+
+    private fun checkNews(max: Int = 20) {
+        val list: MutableList<ArtsModel> = mutableListOf()
+        var i = 0
+        for (value in newsList) {
+            if (i >= max) break
+            if (!homeViewModel.artsDBRepository.findNews(value)!!) {
+                list.add(value)
+                i++
+            }
+        }
+        artsLiveData.value = list
     }
 
     class ViewModelFactory(

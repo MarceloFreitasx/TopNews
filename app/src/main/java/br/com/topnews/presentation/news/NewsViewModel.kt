@@ -3,41 +3,56 @@ package br.com.topnews.presentation.news
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import br.com.topnews.data.local.db.home.HomeRepository
 import br.com.topnews.data.models.NewsModel
 import br.com.topnews.data.repositories.news.NewsRepository
 import br.com.topnews.data.result.NewsResult
 import br.com.topnews.presentation.HomeViewModel
 
 class NewsViewModel(
-    private val homeViewModel: HomeViewModel?,
+    private val homeViewModel: HomeViewModel,
     private val dataSource: NewsRepository
 ) : ViewModel() {
 
+    private var newsList: MutableList<NewsModel> = mutableListOf()
     val newsLiveData: MutableLiveData<List<NewsModel>> = MutableLiveData()
-    val homeRepository = HomeRepository()
 
     fun getNews() {
-        homeViewModel?.viewFlipperNews?.value = homeViewModel?.VIEWFLIPPER_LOADING
+        homeViewModel.viewFlipperNews.value = homeViewModel.VIEWFLIPPER_LOADING
         dataSource.getNews { result: NewsResult ->
             when (result) {
                 is NewsResult.Success -> {
-                    newsLiveData.value = result.news
-                    homeViewModel?.viewFlipperNews?.value = homeViewModel?.VIEWFLIPPER_NEWS
+                    newsList = result.news.toMutableList()
                     checkNews()
+                    homeViewModel.viewFlipperNews.value = homeViewModel.VIEWFLIPPER_NEWS
                 }
                 is NewsResult.Error -> {
-                    homeViewModel?.viewFlipperNews?.value = homeViewModel?.VIEWFLIPPER_ERROR
+                    homeViewModel.viewFlipperNews.value = homeViewModel.VIEWFLIPPER_ERROR
                 }
             }
         }
     }
 
-    fun checkNews() {
+    fun insertNews(it: NewsModel) {
+        homeViewModel.homeDBRepository.insertNews(it)
+        checkNews()
+    }
+
+    fun removeNews() {
+        val max = 20 + homeViewModel.homeDBRepository.getAllNews()!!.size
+        homeViewModel.homeDBRepository.removeAllNews()
+        checkNews(max)
+    }
+
+    private fun checkNews(max: Int = 20) {
         val list: MutableList<NewsModel> = mutableListOf()
-        for (value in newsLiveData.value!!)
-            if (!homeRepository.findNews(value)!!)
+        var i = 0
+        for (value in newsList) {
+            if (i >= max) break
+            if (!homeViewModel.homeDBRepository.findNews(value)!!) {
                 list.add(value)
+                i++
+            }
+        }
         newsLiveData.value = list
     }
 

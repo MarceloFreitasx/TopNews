@@ -13,6 +13,7 @@ class TechViewModel(
     private val dataSource: TechRepository
 ) : ViewModel() {
 
+    private var newsList: MutableList<TechModel> = mutableListOf()
     val techLiveData: MutableLiveData<List<TechModel>> = MutableLiveData()
 
     fun getTech() {
@@ -20,7 +21,8 @@ class TechViewModel(
         dataSource.getTech { result: TechResult ->
             when (result) {
                 is TechResult.Success -> {
-                    techLiveData.value = result.news
+                    newsList = result.news.toMutableList()
+                    checkNews()
                     homeViewModel.viewFlipperNews.value = homeViewModel.VIEWFLIPPER_NEWS
                 }
                 is TechResult.Error -> {
@@ -28,6 +30,30 @@ class TechViewModel(
                 }
             }
         }
+    }
+
+    fun insertNews(it: TechModel) {
+        homeViewModel.techDBRepository.insertNews(it)
+        checkNews()
+    }
+
+    fun removeNews() {
+        val max = 20 + homeViewModel.techDBRepository.getAllNews()!!.size
+        homeViewModel.techDBRepository.removeAllNews()
+        checkNews(max)
+    }
+
+    private fun checkNews(max: Int = 20) {
+        val list: MutableList<TechModel> = mutableListOf()
+        var i = 0
+        for (value in newsList) {
+            if (i >= max) break
+            if (!homeViewModel.techDBRepository.findNews(value)!!) {
+                list.add(value)
+                i++
+            }
+        }
+        techLiveData.value = list
     }
 
     class ViewModelFactory(

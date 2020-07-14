@@ -27,6 +27,7 @@ class ArtsFragment(private val homeViewModel: HomeViewModel) : Fragment() {
         val viewModel: ArtsViewModel =
             ArtsViewModel.ViewModelFactory(homeViewModel, ArtsApiDataSource())
                 .create(ArtsViewModel::class.java)
+        homeViewModel.viewModelFrag = viewModel
 
         activity?.let {
             viewModel.artsLiveData.observe(it, Observer {
@@ -35,6 +36,7 @@ class ArtsFragment(private val homeViewModel: HomeViewModel) : Fragment() {
                         layoutManager =
                             GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                         adapter = ArtsAdapter(news) {
+                            viewModel.insertNews(it)
                             val openURL = Intent(Intent.ACTION_VIEW)
                             openURL.data = Uri.parse(it.url)
                             startActivity(openURL)

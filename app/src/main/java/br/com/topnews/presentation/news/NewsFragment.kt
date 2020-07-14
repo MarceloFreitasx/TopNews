@@ -27,6 +27,7 @@ class NewsFragment(private val homeViewModel: HomeViewModel) : Fragment() {
         val viewModel: NewsViewModel =
             NewsViewModel.ViewModelFactory(homeViewModel, NewsApiDataSource())
                 .create(NewsViewModel::class.java)
+        homeViewModel.viewModelFrag = viewModel
 
         activity?.let {
             viewModel.newsLiveData.observe(it, Observer {
@@ -35,8 +36,7 @@ class NewsFragment(private val homeViewModel: HomeViewModel) : Fragment() {
                         layoutManager =
                             GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                         adapter = NewsAdapter(news) {
-                            viewModel.homeRepository.insertNews(it)
-                            viewModel.checkNews()
+                            viewModel.insertNews(it)
                             val openURL = Intent(Intent.ACTION_VIEW)
                             openURL.data = Uri.parse(it.url)
                             startActivity(openURL)

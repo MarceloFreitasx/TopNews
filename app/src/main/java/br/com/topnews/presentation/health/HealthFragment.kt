@@ -27,6 +27,7 @@ class HealthFragment(private val homeViewModel: HomeViewModel) : Fragment() {
         val viewModel: HealthViewModel =
             HealthViewModel.ViewModelFactory(homeViewModel, HealthApiDataSource())
                 .create(HealthViewModel::class.java)
+        homeViewModel.viewModelFrag = viewModel
 
         activity?.let {
             viewModel.healthLiveData.observe(it, Observer {
@@ -35,6 +36,7 @@ class HealthFragment(private val homeViewModel: HomeViewModel) : Fragment() {
                         layoutManager =
                             GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                         adapter = HealthAdapter(news) {
+                            viewModel.insertNews(it)
                             val openURL = Intent(Intent.ACTION_VIEW)
                             openURL.data = Uri.parse(it.url)
                             startActivity(openURL)
