@@ -27,6 +27,6 @@ Salvar os itens lidos de forma persistente – ou seja, ao "matar" o aplicativo 
 ### Bibliotecas utilizadas:
 1. **Picasso**: https://github.com/square/picasso
 2. **Retrofit**: https://square.github.io/retrofit/
-3. **Room**: developer.android.com/topic/libraries/architecture/room
+3. **Room**: https://developer.android.com/topic/libraries/architecture/room
 4. **Moshi**: https://github.com/square/moshi
 5. **Mockito**: https://developer.android.com/training/testing/unit-testing/local-unit-tests
