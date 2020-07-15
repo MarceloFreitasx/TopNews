@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.topnews.R
 import br.com.topnews.data.models.TechModel
-import br.com.topnews.data.repositories.tech.TechApiDataSource
 import br.com.topnews.presentation.HomeViewModel
 import kotlinx.android.synthetic.main.activity_news.*
 
@@ -27,9 +26,8 @@ class TechFragment(private val homeViewModel: HomeViewModel) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val viewModel: TechViewModel =
-            TechViewModel.ViewModelFactory(homeViewModel, TechApiDataSource())
+            TechViewModel.ViewModelFactory(homeViewModel)
                 .create(TechViewModel::class.java)
-        homeViewModel.viewModelFrag = viewModel
 
         activity?.let {
             viewModel.techLiveData.observe(it, Observer {
@@ -40,7 +38,11 @@ class TechFragment(private val homeViewModel: HomeViewModel) : Fragment() {
                         adapter = TechAdapter(news) { it: TechModel, s: String ->
                             if (s == "lido") {
                                 viewModel.insertNews(it)
-                                Toast.makeText(context, "Notícia marcada como lida", Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    context,
+                                    "Notícia marcada como lida",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             } else {
                                 val openURL = Intent(Intent.ACTION_VIEW)
                                 openURL.data = Uri.parse(it.url)

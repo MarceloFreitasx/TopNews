@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import br.com.topnews.R
+import br.com.topnews.di.components.DaggerHomeComponent
 import br.com.topnews.presentation.arts.ArtsFragment
 import br.com.topnews.presentation.health.HealthFragment
 import br.com.topnews.presentation.news.NewsFragment
@@ -13,16 +14,23 @@ import br.com.topnews.presentation.science.ScienceFragment
 import br.com.topnews.presentation.tech.TechFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_home.*
+import javax.inject.Inject
 
 class HomeActivity : AppCompatActivity() {
 
-    val viewModel = HomeViewModel(supportFragmentManager)
+    @Inject
+    lateinit var viewModel: HomeViewModel
+
+    init {
+        DaggerHomeComponent.create().inject(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
+        viewModel.fr = supportFragmentManager
 
         viewModel.viewFlipperNews.observe(this, Observer {
             it?.let { viewFlipper ->

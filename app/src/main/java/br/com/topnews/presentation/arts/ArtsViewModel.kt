@@ -6,12 +6,21 @@ import androidx.lifecycle.ViewModelProvider
 import br.com.topnews.data.models.ArtsModel
 import br.com.topnews.data.repositories.arts.ArtsRepository
 import br.com.topnews.data.result.ArtsResult
+import br.com.topnews.di.components.DaggerArtsComponent
 import br.com.topnews.presentation.HomeViewModel
+import javax.inject.Inject
 
 class ArtsViewModel(
-    private val homeViewModel: HomeViewModel,
-    private val dataSource: ArtsRepository
+    private val homeViewModel: HomeViewModel
 ) : ViewModel() {
+
+    @Inject
+    lateinit var dataSource: ArtsRepository
+
+    init {
+        DaggerArtsComponent.create().inject(this)
+        homeViewModel.viewModelFrag = this
+    }
 
     private var newsList: MutableList<ArtsModel> = mutableListOf()
     val artsLiveData: MutableLiveData<List<ArtsModel>> = MutableLiveData()
@@ -57,12 +66,11 @@ class ArtsViewModel(
     }
 
     class ViewModelFactory(
-        private val homeViewModel: HomeViewModel,
-        private val dataSource: ArtsRepository
+        private val homeViewModel: HomeViewModel
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(ArtsViewModel::class.java)) {
-                return ArtsViewModel(homeViewModel, dataSource) as T
+                return ArtsViewModel(homeViewModel) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.topnews.R
 import br.com.topnews.data.models.ArtsModel
-import br.com.topnews.data.repositories.arts.ArtsApiDataSource
 import br.com.topnews.presentation.HomeViewModel
 import kotlinx.android.synthetic.main.activity_news.*
 
@@ -27,9 +26,8 @@ class ArtsFragment(private val homeViewModel: HomeViewModel) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val viewModel: ArtsViewModel =
-            ArtsViewModel.ViewModelFactory(homeViewModel, ArtsApiDataSource())
+            ArtsViewModel.ViewModelFactory(homeViewModel)
                 .create(ArtsViewModel::class.java)
-        homeViewModel.viewModelFrag = viewModel
 
         activity?.let {
             viewModel.artsLiveData.observe(it, Observer {
@@ -40,7 +38,11 @@ class ArtsFragment(private val homeViewModel: HomeViewModel) : Fragment() {
                         adapter = ArtsAdapter(news) { it: ArtsModel, s: String ->
                             if (s == "lido") {
                                 viewModel.insertNews(it)
-                                Toast.makeText(context, "Notícia marcada como lida", Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    context,
+                                    "Notícia marcada como lida",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             } else {
                                 val openURL = Intent(Intent.ACTION_VIEW)
                                 openURL.data = Uri.parse(it.url)

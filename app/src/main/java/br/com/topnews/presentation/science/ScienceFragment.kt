@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.topnews.R
 import br.com.topnews.data.models.ScienceModel
-import br.com.topnews.data.repositories.science.ScienceApiDataSource
 import br.com.topnews.presentation.HomeViewModel
 import kotlinx.android.synthetic.main.activity_news.*
 
@@ -27,9 +26,8 @@ class ScienceFragment(private val homeViewModel: HomeViewModel) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val viewModel: ScienceViewModel =
-            ScienceViewModel.ViewModelFactory(homeViewModel, ScienceApiDataSource())
+            ScienceViewModel.ViewModelFactory(homeViewModel)
                 .create(ScienceViewModel::class.java)
-        homeViewModel.viewModelFrag = viewModel
 
         activity?.let {
             viewModel.scienceLiveData.observe(it, Observer {
@@ -40,7 +38,11 @@ class ScienceFragment(private val homeViewModel: HomeViewModel) : Fragment() {
                         adapter = ScienceAdapter(news) { it: ScienceModel, s: String ->
                             if (s == "lido") {
                                 viewModel.insertNews(it)
-                                Toast.makeText(context, "Notícia marcada como lida", Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    context,
+                                    "Notícia marcada como lida",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             } else {
                                 val openURL = Intent(Intent.ACTION_VIEW)
                                 openURL.data = Uri.parse(it.url)

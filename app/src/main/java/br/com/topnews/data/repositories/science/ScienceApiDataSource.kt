@@ -4,14 +4,23 @@ import br.com.topnews.data.ApiService
 import br.com.topnews.data.models.ScienceModel
 import br.com.topnews.data.response.science.ScienceBodyResponse
 import br.com.topnews.data.result.ScienceResult
+import br.com.topnews.di.components.DaggerApiComponent
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 class ScienceApiDataSource : ScienceRepository {
 
+    @Inject
+    lateinit var apiService: ApiService
+
+    init {
+        DaggerApiComponent.create().inject(this)
+    }
+
     override fun getScience(resultCallback: (result: ScienceResult) -> Unit) {
-        ApiService.service.getScienceNews().enqueue(object : Callback<ScienceBodyResponse> {
+        apiService.service.getScienceNews().enqueue(object : Callback<ScienceBodyResponse> {
             override fun onResponse(
                 call: Call<ScienceBodyResponse>,
                 response: Response<ScienceBodyResponse>

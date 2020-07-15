@@ -19,8 +19,9 @@ Salvar os itens lidos de forma persistente – ou seja, ao "matar" o aplicativo 
 
 #### O app contém os seguintes pacotes:
 1. **data**: Contém todos os dados acessando e manipulando componentes.
-2. **presentation**: Todas as Views e ModelViews correspondentes.
-3. **utils**: Classes de utilidade em geral.
+2. **di**: Contém todos as classes de injeção de dependencia
+3. **presentation**: Todas as Views e ModelViews correspondentes.
+4. **utils**: Classes de utilidade em geral.
 
 #### As classes foram projetadas de forma que possam ser herdadas e sua reutilização seja maximizada.
 
@@ -30,3 +31,4 @@ Salvar os itens lidos de forma persistente – ou seja, ao "matar" o aplicativo 
 3. **Room**: https://developer.android.com/topic/libraries/architecture/room
 4. **Moshi**: https://github.com/square/moshi
 5. **Mockito**: https://developer.android.com/training/testing/unit-testing/local-unit-tests
+5. **Dagger2**: https://github.com/google/dagger

@@ -27,9 +27,8 @@ class HealthFragment(private val homeViewModel: HomeViewModel) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val viewModel: HealthViewModel =
-            HealthViewModel.ViewModelFactory(homeViewModel, HealthApiDataSource())
+            HealthViewModel.ViewModelFactory(homeViewModel)
                 .create(HealthViewModel::class.java)
-        homeViewModel.viewModelFrag = viewModel
 
         activity?.let {
             viewModel.healthLiveData.observe(it, Observer {

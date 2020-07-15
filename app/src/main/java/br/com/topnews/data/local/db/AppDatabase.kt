@@ -17,7 +17,8 @@ import br.com.topnews.data.models.*
         ScienceModel::class,
         TechModel::class
     ),
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun artsDao(): ArtsDAO

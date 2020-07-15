@@ -4,14 +4,23 @@ import br.com.topnews.data.ApiService
 import br.com.topnews.data.models.TechModel
 import br.com.topnews.data.response.tech.TechBodyResponse
 import br.com.topnews.data.result.TechResult
+import br.com.topnews.di.components.DaggerApiComponent
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 class TechApiDataSource : TechRepository {
 
+    @Inject
+    lateinit var apiService: ApiService
+
+    init {
+        DaggerApiComponent.create().inject(this)
+    }
+
     override fun getTech(resultCallback: (result: TechResult) -> Unit) {
-        ApiService.service.getTechNews().enqueue(object : Callback<TechBodyResponse> {
+        apiService.service.getTechNews().enqueue(object : Callback<TechBodyResponse> {
             override fun onResponse(
                 call: Call<TechBodyResponse>,
                 response: Response<TechBodyResponse>

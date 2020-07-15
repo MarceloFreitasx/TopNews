@@ -6,12 +6,21 @@ import androidx.lifecycle.ViewModelProvider
 import br.com.topnews.data.models.HealthModel
 import br.com.topnews.data.repositories.health.HealthRepository
 import br.com.topnews.data.result.HealthResult
+import br.com.topnews.di.components.DaggerHealthComponent
 import br.com.topnews.presentation.HomeViewModel
+import javax.inject.Inject
 
 class HealthViewModel(
-    private val homeViewModel: HomeViewModel,
-    private val dataSource: HealthRepository
+    private val homeViewModel: HomeViewModel
 ) : ViewModel() {
+
+    @Inject
+    lateinit var dataSource: HealthRepository
+
+    init {
+        DaggerHealthComponent.create().inject(this)
+        homeViewModel.viewModelFrag = this
+    }
 
     private var newsList: MutableList<HealthModel> = mutableListOf()
     val healthLiveData: MutableLiveData<List<HealthModel>> = MutableLiveData()
@@ -57,12 +66,11 @@ class HealthViewModel(
     }
 
     class ViewModelFactory(
-        private val homeViewModel: HomeViewModel,
-        private val dataSource: HealthRepository
+        private val homeViewModel: HomeViewModel
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(HealthViewModel::class.java)) {
-                return HealthViewModel(homeViewModel, dataSource) as T
+                return HealthViewModel(homeViewModel) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

@@ -4,14 +4,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import br.com.topnews.data.models.ScienceModel
+import br.com.topnews.data.repositories.science.ScienceApiDataSource
 import br.com.topnews.data.repositories.science.ScienceRepository
 import br.com.topnews.data.result.ScienceResult
+import br.com.topnews.di.components.DaggerScienceComponent
 import br.com.topnews.presentation.HomeViewModel
+import javax.inject.Inject
 
 class ScienceViewModel(
-    private val homeViewModel: HomeViewModel,
-    private val dataSource: ScienceRepository
+    private val homeViewModel: HomeViewModel
 ) : ViewModel() {
+
+    @Inject
+    lateinit var dataSource: ScienceRepository
+
+    init {
+        DaggerScienceComponent.create().inject(this)
+        homeViewModel.viewModelFrag = this
+    }
 
     private var newsList: MutableList<ScienceModel> = mutableListOf()
     val scienceLiveData: MutableLiveData<List<ScienceModel>> = MutableLiveData()
@@ -57,12 +67,11 @@ class ScienceViewModel(
     }
 
     class ViewModelFactory(
-        private val homeViewModel: HomeViewModel,
-        private val dataSource: ScienceRepository
+        private val homeViewModel: HomeViewModel
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(ScienceViewModel::class.java)) {
-                return ScienceViewModel(homeViewModel, dataSource) as T
+                return ScienceViewModel(homeViewModel) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

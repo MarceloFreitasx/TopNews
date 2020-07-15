@@ -4,14 +4,23 @@ import br.com.topnews.data.ApiService
 import br.com.topnews.data.models.HealthModel
 import br.com.topnews.data.response.health.HealthBodyResponse
 import br.com.topnews.data.result.HealthResult
+import br.com.topnews.di.components.DaggerApiComponent
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
 class HealthApiDataSource : HealthRepository {
 
+    @Inject
+    lateinit var apiService: ApiService
+
+    init {
+        DaggerApiComponent.create().inject(this)
+    }
+
     override fun getHealth(resultCallback: (result: HealthResult) -> Unit) {
-        ApiService.service.getHealthNews().enqueue(object : Callback<HealthBodyResponse> {
+        apiService.service.getHealthNews().enqueue(object : Callback<HealthBodyResponse> {
             override fun onResponse(
                 call: Call<HealthBodyResponse>,
                 response: Response<HealthBodyResponse>

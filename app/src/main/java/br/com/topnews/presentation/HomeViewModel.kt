@@ -21,9 +21,9 @@ import br.com.topnews.presentation.science.ScienceViewModel
 import br.com.topnews.presentation.tech.TechFragment
 import br.com.topnews.presentation.tech.TechViewModel
 
-class HomeViewModel(supportFragmentManager: FragmentManager?) : ViewModel() {
+class HomeViewModel : ViewModel() {
 
-    val fr = supportFragmentManager
+    var fr: FragmentManager? = null
     lateinit var fragment: Fragment
     lateinit var viewModelFrag: ViewModel
     val homeDBRepository = HomeDBRepository()
@@ -42,9 +42,9 @@ class HomeViewModel(supportFragmentManager: FragmentManager?) : ViewModel() {
     fun replaceFragment(frag: Fragment) {
         when {
             fr != null -> {
-                val transaction = fr.beginTransaction()
-                transaction.replace(R.id.fragmentView, frag)
-                transaction.commit()
+                val transaction = fr?.beginTransaction()
+                transaction?.replace(R.id.fragmentView, frag)
+                transaction?.commit()
                 fragment = frag
             }
         }
