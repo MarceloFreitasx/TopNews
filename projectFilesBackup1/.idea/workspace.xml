@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="JSON" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="61f63417-3b99-46fc-a7f0-742fe80d713b" name="Default Changelist" comment="Integração Room, criação das tabelas e ajustes nas telas e viewmodels">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/topnews/presentation/historico/HistoricoAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/br/com/topnews/presentation/historico/HistoricoViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/br/com/topnews/presentations/news/NewsViewModelTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/br/com/topnews/presentations/news/NewsViewModelTest.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_4_API_23" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="layoutResourceFile_vertical" />
+        <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
+        <option value="resourceFile" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="ProjectId" id="1eWX82h6FmifeqRy46TEoK34DSs" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="192.168.0.100:5555" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-07-11T20:18:32.463Z" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/br/com/topnews/presentation/historico" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalDependencies" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="br.com.topnews.data.local.db" />
+      <recent name="br.com.topnews.presentation" />
+      <recent name="br.com.topnews.data.repositories.news" />
+      <recent name="br.com.topnews.data.result" />
+      <recent name="br.com.topnews.data" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="br.com.topnews.data.local.db.tech" />
+      <recent name="br.com.topnews.data.local.db.science" />
+      <recent name="br.com.topnews.data.local.db.health" />
+      <recent name="br.com.topnews.data.local.db.arts" />
+      <recent name="br.com.topnews.presentation" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/java/br/com/topnews/presentation/historico" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/br/com/topnews/data/local/db/tech" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/br/com/topnews/data/local/db/science" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/br/com/topnews/data/local/db/news" />
+      <recent name="$PROJECT_DIR$/app/src/main/java/br/com/topnews/data/local/db/health" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration name="NewsViewModelTest.when viewmodel getNews get error then sets viewFlipperNews" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.topnews.presentations.news.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.topnews.presentations.news" />
+      <option name="MAIN_CLASS_NAME" value="br.com.topnews.presentations.news.NewsViewModelTest" />
+      <option name="METHOD_NAME" value="when viewmodel getNews get error then sets viewFlipperNews" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NewsViewModelTest.when viewmodel getNews get success then sets newsLiveData" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.topnews.presentations.news.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.topnews.presentations.news" />
+      <option name="MAIN_CLASS_NAME" value="br.com.topnews.presentations.news.NewsViewModelTest" />
+      <option name="METHOD_NAME" value="when viewmodel getNews get success then sets newsLiveData" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NewsViewModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.topnews.presentations.news.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.com.topnews.presentations.news" />
+      <option name="MAIN_CLASS_NAME" value="br.com.topnews.presentations.news.NewsViewModelTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Android JUnit.NewsViewModelTest.when viewmodel getNews get error then sets viewFlipperNews" />
+        <item itemvalue="Android JUnit.NewsViewModelTest.when viewmodel getNews get success then sets newsLiveData" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="61f63417-3b99-46fc-a7f0-742fe80d713b" name="Default Changelist" comment="" />
+      <created>1594438160991</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594438160991</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Busca e exibição de notícias puxando da API do NYT, configurações de interfaces e services e ajustes no layout">
+      <created>1594496873711</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594496873711</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Adicionado seção Arts, Science, Health e Tech e seus respectivos models, modelviews, repositories, response e result.">
+      <created>1594528955781</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1594528955782</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Integração Room, criação das tabelas e ajustes nas telas e viewmodels">
+      <created>1594612782465</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1594612782466</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Criação repository para o bd local e ajustes DAO. Marcado noticia como lido ao abrir a mesma, adicionado menu de desmarcar lidos e atualizar noticias, outros ajustes">
+      <created>1594701542586</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1594701542586</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Busca e exibição de notícias puxando da API do NYT, configurações de interfaces e services e ajustes no layout" />
+    <MESSAGE value="Adicionado seção Arts, Science, Health e Tech e seus respectivos models, modelviews, repositories, response e result." />
+    <MESSAGE value="Integração Room, criação das tabelas e ajustes nas telas e viewmodels" />
+    <MESSAGE value="Criação repository para o bd local e ajustes DAO. Marcado noticia como lido ao abrir a mesma, adicionado menu de desmarcar lidos e atualizar noticias, outros ajustes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Criação repository para o bd local e ajustes DAO. Marcado noticia como lido ao abrir a mesma, adicionado menu de desmarcar lidos e atualizar noticias, outros ajustes" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1732" y="139" key="#com.intellij.ide.util.MemberChooser" timestamp="1594596628659">
+      <screen x="1280" y="32" width="1366" height="768" />
+    </state>
+    <state x="1732" y="139" key="#com.intellij.ide.util.MemberChooser/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594525422275" />
+    <state x="1732" y="139" key="#com.intellij.ide.util.MemberChooser/1280.32.1366.768/0.23.1280.777@1280.32.1366.768" timestamp="1594596628659" />
+    <state x="1700" y="206" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1594530023677">
+      <screen x="1280" y="32" width="1366" height="768" />
+    </state>
+    <state x="1700" y="206" key="#com.intellij.ide.util.TreeClassChooserDialog/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594530023677" />
+    <state x="1479" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1594528074729">
+      <screen x="1280" y="32" width="1366" height="768" />
+    </state>
+    <state x="1479" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594528074729" />
+    <state x="-727" y="32" width="727" height="768" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1594675140522">
+      <screen x="-1366" y="32" width="1366" height="768" />
+    </state>
+    <state x="-727" y="32" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/-1366.32.1366.768/0.0.1280.800@-1366.32.1366.768" timestamp="1594675140522" />
+    <state x="574" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.800@0.0.1280.800" timestamp="1594522404106" />
+    <state x="1919" y="32" width="727" height="768" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594526492966" />
+    <state x="413" y="0" width="613" height="768" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1594565772662">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="413" y="0" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1594565772662" />
+    <state x="1721" y="32" width="613" height="768" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594524259240" />
+    <state x="1551" y="178" key="AndroidCreateResourceFileDialog" timestamp="1594527494356">
+      <screen x="1280" y="32" width="1366" height="768" />
+    </state>
+    <state x="254" y="152" key="AndroidCreateResourceFileDialog/0.0.1280.800@0.0.1280.800" timestamp="1594486767462" />
+    <state x="1551" y="178" key="AndroidCreateResourceFileDialog/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594527494356" />
+    <state x="1808" y="271" key="AndroidCreateXmlResourceDialog" timestamp="1594527618326">
+      <screen x="1280" y="32" width="1366" height="768" />
+    </state>
+    <state x="495" y="249" key="AndroidCreateXmlResourceDialog/0.0.1280.800@0.0.1280.800" timestamp="1594492467022" />
+    <state x="1808" y="271" key="AndroidCreateXmlResourceDialog/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594527618326" />
+    <state x="186" y="0" key="CommitChangelistDialog2" timestamp="1594701541721">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="186" y="0" key="CommitChangelistDialog2/0.0.1280.800@0.0.1280.800" timestamp="1594701541721" />
+    <state x="1478" y="32" key="CommitChangelistDialog2/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594612781550" />
+    <state width="1238" height="191" key="GridCell.Tab.0.bottom" timestamp="1594701652701">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1324" height="193" key="GridCell.Tab.0.bottom/-1366.32.1366.768/0.0.1280.800@-1366.32.1366.768" timestamp="1594669088173" />
+    <state width="1238" height="191" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1594701652701" />
+    <state width="1324" height="193" key="GridCell.Tab.0.bottom/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594601645358" />
+    <state width="1324" height="193" key="GridCell.Tab.0.bottom/1280.32.1366.768/0.23.1280.777@1280.32.1366.768" timestamp="1594597868471" />
+    <state width="1238" height="191" key="GridCell.Tab.0.center" timestamp="1594701652698">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1324" height="193" key="GridCell.Tab.0.center/-1366.32.1366.768/0.0.1280.800@-1366.32.1366.768" timestamp="1594669088168" />
+    <state width="1238" height="191" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1594701652698" />
+    <state width="1324" height="193" key="GridCell.Tab.0.center/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594601645355" />
+    <state width="1324" height="193" key="GridCell.Tab.0.center/1280.32.1366.768/0.23.1280.777@1280.32.1366.768" timestamp="1594597868467" />
+    <state width="1238" height="191" key="GridCell.Tab.0.left" timestamp="1594701652692">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1324" height="193" key="GridCell.Tab.0.left/-1366.32.1366.768/0.0.1280.800@-1366.32.1366.768" timestamp="1594669088166" />
+    <state width="1238" height="191" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1594701652692" />
+    <state width="1324" height="193" key="GridCell.Tab.0.left/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594601645353" />
+    <state width="1324" height="193" key="GridCell.Tab.0.left/1280.32.1366.768/0.23.1280.777@1280.32.1366.768" timestamp="1594597868465" />
+    <state width="1238" height="191" key="GridCell.Tab.0.right" timestamp="1594701652699">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state width="1324" height="193" key="GridCell.Tab.0.right/-1366.32.1366.768/0.0.1280.800@-1366.32.1366.768" timestamp="1594669088171" />
+    <state width="1238" height="191" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1594701652699" />
+    <state width="1324" height="193" key="GridCell.Tab.0.right/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594601645356" />
+    <state width="1324" height="193" key="GridCell.Tab.0.right/1280.32.1366.768/0.23.1280.777@1280.32.1366.768" timestamp="1594597868469" />
+    <state x="172" y="23" key="SettingsEditor" timestamp="1594471242163">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="172" y="23" key="SettingsEditor/0.0.1280.800@0.0.1280.800" timestamp="1594471242163" />
+    <state x="1464" y="43" key="SettingsEditor/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594447885326" />
+    <state x="1464" y="66" key="SettingsEditor/1280.55.1366.745/0.23.1280.735@1280.55.1366.745" timestamp="1594438431619" />
+    <state x="1577" y="45" key="VCS.ChangeListViewerDialog" timestamp="1594500572190">
+      <screen x="1280" y="32" width="1366" height="768" />
+    </state>
+    <state x="1577" y="45" key="VCS.ChangeListViewerDialog/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594500572190" />
+    <state x="265" y="125" key="Vcs.Push.Dialog.v2" timestamp="1594701545914">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="265" y="125" key="Vcs.Push.Dialog.v2/0.0.1280.800@0.0.1280.800" timestamp="1594701545914" />
+    <state x="1563" y="152" key="Vcs.Push.Dialog.v2/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594612827591" />
+    <state x="1740" y="201" key="chooseDestDirectoryDialog" timestamp="1594593382389">
+      <screen x="1280" y="32" width="1366" height="768" />
+    </state>
+    <state x="1740" y="201" key="chooseDestDirectoryDialog/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594593382389" />
+    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1594491355430">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="100" y="100" width="1080" height="600" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.800@0.0.1280.800" timestamp="1594491355430" />
+    <state x="418" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594485076761">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="418" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.800@0.0.1280.800" timestamp="1594485076761" />
+    <state x="1697" y="123" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog" timestamp="1594596759403">
+      <screen x="1280" y="32" width="1366" height="768" />
+    </state>
+    <state x="1697" y="123" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594530027047" />
+    <state x="1697" y="123" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog/1280.32.1366.768/0.23.1280.777@1280.32.1366.768" timestamp="1594596759403" />
+    <state x="-921" y="49" key="refactoring.ChangeSignatureDialog" timestamp="1594675400429">
+      <screen x="-1366" y="32" width="1366" height="768" />
+    </state>
+    <state x="-921" y="49" key="refactoring.ChangeSignatureDialog/-1366.32.1366.768/0.0.1280.800@-1366.32.1366.768" timestamp="1594675400429" />
+    <state x="1725" y="49" key="refactoring.ChangeSignatureDialog/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594525776015" />
+    <state x="1628" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1594599938376">
+      <screen x="1280" y="32" width="1366" height="768" />
+    </state>
+    <state x="326" y="96" width="670" height="705" key="search.everywhere.popup/0.0.1280.800@0.0.1280.800" timestamp="1594487812543" />
+    <state x="1628" y="124" width="670" height="676" key="search.everywhere.popup/1280.32.1366.768/0.0.1280.800@1280.32.1366.768" timestamp="1594599938376" />
+  </component>
+</project>

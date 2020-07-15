@@ -7,12 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.topnews.R
 import br.com.topnews.data.models.HealthModel
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.listitem_news.view.*
 
 class HealthAdapter(
     private val news: List<HealthModel>,
-    private val onItemClickListener: ((news: HealthModel) -> Unit)
+    private val onItemClickListener: ((news: HealthModel, tag: String) -> Unit)
 ) : RecyclerView.Adapter<HealthAdapter.HealthViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HealthViewHolder {
@@ -29,21 +29,26 @@ class HealthAdapter(
 
     class HealthViewHolder(
         itemView: View,
-        private val onItemClickListener: ((news: HealthModel) -> Unit)
+        private val onItemClickListener: ((news: HealthModel, tag: String) -> Unit)
     ) : RecyclerView.ViewHolder(itemView) {
         private val position: TextView = itemView.position
         private val imagem = itemView.imagem
         private val titulo = itemView.titulo
         private val autor = itemView.autor
+        private val btnLido = itemView.btnLido
 
         fun bindView(i: Int, news: HealthModel) {
             position.text = i.toString()
-            Picasso.get().load(news.cover).into(imagem);
+            Glide.with(itemView.context).load(news.cover).into(imagem)
             titulo.text = news.title
             autor.text = news.byline
 
             itemView.setOnClickListener() {
-                onItemClickListener.invoke(news)
+                onItemClickListener.invoke(news, "item")
+            }
+
+            btnLido.setOnClickListener() {
+                onItemClickListener.invoke(news, "lido")
             }
         }
     }
