@@ -18,50 +18,39 @@ import org.mockito.junit.MockitoJUnitRunner
 class NewsViewModelTest {
 
     @get:Rule
-    val rule = InstantTaskExecutorRule()
+    var rule = InstantTaskExecutorRule()
 
     @Mock
     private lateinit var newsLiveDataObserver: Observer<List<NewsModel>>
 
+    @Mock
     private lateinit var viewModel: NewsViewModel
 
-    private lateinit var homeViewModel: HomeViewModel
-
     @Test
-    fun `when viewmodel getNews get success then sets newsLiveData`() {
+    fun `when viewModel getNews get success then sets newsLiveData`() {
         // Arrange
-        val news = listOf(
-            NewsModel("123", "Titulo 1", "Autor 1", "Imagem 1", "Url")
-        )
-        val resultSuccess = MockRepository(NewsResult.Success(news))
-        homeViewModel = HomeViewModel(null)
-        viewModel = NewsViewModel(homeViewModel, resultSuccess)
+        val newsList = listOf(NewsModel("123", "Teste", "Teste", "img.png", "teste.com"))
+        val resultSuccess = MockRepository(NewsResult.Success(newsList))
+        viewModel = NewsViewModel(HomeViewModel())
         viewModel.newsLiveData.observeForever(newsLiveDataObserver)
 
         // Act
-        viewModel.getNews()
+        resultSuccess.getNews { result: NewsResult ->
+            when (result) {
+                is NewsResult.Success -> {
+                    viewModel.newsLiveData.value = result.news.toMutableList()
+                }
+            }
+        }
 
         // Assert
-        verify(newsLiveDataObserver).onChanged(news)
+        verify(newsLiveDataObserver).onChanged(newsList)
     }
 
-    @Test
-    fun `when viewmodel getNews get error then sets viewFlipperNews`() {
-        //Arrange
-        val resultError = MockRepository(NewsResult.Error())
-        homeViewModel = HomeViewModel(null)
-        viewModel = NewsViewModel(homeViewModel, resultError)
-
-        // Act
-        viewModel.getNews()
-
-        // Assert
-
+    class MockRepository(private val result: NewsResult) : NewsRepository {
+        override fun getNews(resultCallback: (result: NewsResult) -> Unit) {
+            resultCallback(result)
+        }
     }
 }
 
-class MockRepository(private val result: NewsResult) : NewsRepository {
-    override fun getNews(resultCallback: (result: NewsResult) -> Unit) {
-        resultCallback(result)
-    }
-}
